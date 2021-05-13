@@ -1,10 +1,22 @@
 const mongoose = require('mongoose');
 
-const myUser = new mongoose.Schema({
+const newUser = new mongoose.Schema({
     username: { type: String, required: true },
     fullname: { type: String, required: true },
-    password: { type: String, required: true },
-    email: { type: String, required: true }
+    password: { type: String, required: true, validate: {
+        validator: function($) {
+            return new RegExp("^(((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])))(?=.{8,})").test($);
+        },
+        message: 'Invalid password'
+    } 
+},
+    email: {
+        type: String, required: true, validate: {
+            validator: function ($) {
+                return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/.test($)
+            },
+            message: 'Invalid Email'
+        }
+    }
 })
-
-mongoose.model('addUsers', myUser);
+mongoose.model('newUsers', newUser);
