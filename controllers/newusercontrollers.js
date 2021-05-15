@@ -13,6 +13,9 @@ router.post('/signin', function (req, res) {
   getUserDetails(req, res);
 });
 
+router.put('/confirm', function (req, res, next) {
+  activateLogin(req, res);
+});
 // router.get('/:id', function (req, res, next) {
 //   console.log('Success');
 // })
@@ -22,7 +25,7 @@ async function insertNewUserDetails(req, res) {
   user.fullname = req.body.fullname;
   user.password = req.body.password;
   user.email = req.body.email;
-  user.confirmemail = false;
+  user.active = false;
   await User.findOne({ email: req.body.email }, function (err, data) {
     if (err) {
       res.json({ status: false, error: err });
@@ -31,9 +34,9 @@ async function insertNewUserDetails(req, res) {
         res.json({ status: false, message: 'Email is already exist' });
       } else {
         user.save((err, doc) => {
-          if (!err) {            
+          if (!err) {
             mail.mail(req.body.email, doc._id);
-            res.json({ status: true, message: 'Our Technical Team send an email to your registered mail ID. Please confirm if you are a genuine user' });
+            res.json({ status: true, message: `We now need to verify your email address. We have sent an email to ${req.body.password} to verify your address.`});
           } else {
             res.json({ status: false, error: err, message: 'User Name already exist' });
           }
@@ -48,12 +51,26 @@ async function getUserDetails(req, res) {
     if (err) {
       res.json({ status: false, error: err });
     } else {
-      if (doc.length > 0 && doc !== null && doc[0].confirmemail) {
-        res.json({ status: doc[0].confirmemail, message: 'Successfully login' });
+      if (doc.length > 0 && doc !== null) {
+        if (doc[0].active) {
+          res.json({ status: doc[0].active, message: 'Successfully login' });
+        } else {
+          res.json({ status: doc[0].active, message: 'Email Verification is pending' });
+        }
       } else {
         res.json({ status: false, message: 'Invalid credentials' });
       }
     }
   });
+}
+
+async function activateLogin(req, res) {
+  await User.updateOne({_id: req.body.userId}, {$set:{active: true}}, function(err) {
+    if(!err) {
+      res.json({status: true, message: 'Email verified'});
+    } else {
+      res.json({status: false, message: 'Please try again', error: err});
+    }
+  })
 }
 module.exports = router;

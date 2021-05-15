@@ -18,6 +18,6 @@ const newUser = new mongoose.Schema({
             message: 'Invalid Email'
         }
     }, 
-    confirmemail: {type: Boolean, required: true}, 
+    active: {type: Boolean, required: true}, 
 })
 mongoose.model('newUsers', newUser);
