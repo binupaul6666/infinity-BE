@@ -36,7 +36,7 @@ async function insertNewUserDetails(req, res) {
         user.save((err, doc) => {
           if (!err) {
             mail.mail(req.body.email, doc._id);
-            res.json({ status: true, message: `We now need to verify your email address. We have sent an email to ${req.body.password} to verify your address.`});
+            res.json({ status: true, message: `We now need to verify your email address. We have sent an email to ${req.body.password} to verify your address.` });
           } else {
             res.json({ status: false, error: err, message: 'User Name already exist' });
           }
@@ -65,12 +65,23 @@ async function getUserDetails(req, res) {
 }
 
 async function activateLogin(req, res) {
-  await User.updateOne({_id: req.body.userId}, {$set:{active: true}}, function(err) {
-    if(!err) {
-      res.json({status: true, message: 'Email verified'});
+  await User.findOneAndUpdate({ _id: req.body.userId }, { $set: { active: true } }, function (err, doc) {
+    if (!err) {
+      if (doc !== null) {
+        res.json({ status: true, message: 'Email verified' });
+      } else {
+        res.json({ status: false, message: 'Please verify your Email again', error: err });
+      }
+
     } else {
-      res.json({status: false, message: 'Please try again', error: err});
+      res.json({ status: false, message: 'Please try again', error: err });
     }
   })
 }
 module.exports = router;
+
+/**
+ * LOGIN Logic Completed
+ * @author Binu Paul (Mail: paulbinu1991@gmail.com)
+ * @description This application is developing for Royals Pallipadi
+ */
