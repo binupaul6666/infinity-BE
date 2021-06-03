@@ -8,6 +8,7 @@ require('./models/db');
 
 
 var usersRouter = require('./controllers/newusercontrollers');
+var userUpdate = require('./controllers/formcontroller');
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use('/authentication', usersRouter);
+app.use('/user', userUpdate);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

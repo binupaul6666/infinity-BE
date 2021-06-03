@@ -14,3 +14,4 @@ err => {
 });
 
 require('./newuser');
+require('./commonmodules/form');

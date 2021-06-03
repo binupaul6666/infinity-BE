@@ -1,0 +1,140 @@
+[
+    {
+        "type": "input",
+        "id": "fullname",
+        "value": "fullname",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Full Name",
+        "readonly": false
+    },
+    {
+        "type": "dropdown",
+        "id": "bloodgroup",
+        "value": "bloodgroup",
+        "selectorLabel": [
+            {
+                "name": "A+",
+                "code": "A+"
+            },
+            {
+                "name": "A-",
+                "code": "A-"
+            },
+            {
+                "name": "B+",
+                "code": "B+"
+            },
+            {
+                "name": "B-",
+                "code": "B-"
+            },
+            {
+                "name": "AB+",
+                "code": "AB+"
+            },
+            {
+                "name": "AB-",
+                "code": "AB-"
+            },
+            {
+                "name": "O+",
+                "code": "O+"
+            },
+            {
+                "name": "O-",
+                "code": "O-"
+            }
+        ],
+        "editable": false,
+        "label": "Blood Group",
+        "readonly": false
+    },
+    {
+        "type": "input",
+        "id": "address1",
+        "value": "address1",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Address Line 1",
+        "readonly": false
+    },
+    {
+        "type": "input",
+        "id": "address2",
+        "value": "address2",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Address Line 2",
+        "readonly": false
+    }, {
+        "type": "input",
+        "id": "address3",
+        "value": "address3",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Address Line 3",
+        "readonly": false
+    }, {
+        "type": "input",
+        "id": "country",
+        "value": "country",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Country",
+        "readonly": true
+    }, {
+        "type": "input",
+        "id": "state",
+        "value": "state",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "State",
+        "readonly": true
+    },
+    {
+        "type": "input",
+        "id": "city",
+        "value": "city",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "City",
+        "readonly": false
+    },
+    {
+        "type": "number",
+        "id": "zipcode",
+        "value": "zipcode",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "ZIP Code",
+        "readonly": false
+    },
+    {
+        "type": "input",
+        "id": "email",
+        "value": "email",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Email",
+        "readonly": false
+    },
+    {
+        "type": "number",
+        "id": "phone",
+        "value": "phone",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Mobile No",
+        "readonly": false
+    },
+    {
+        "type": "input",
+        "id": "occupation",
+        "value": "occupation",
+        "selectorLabel": [],
+        "editable": false,
+        "label": "Occupation",
+        "readonly": false
+    }
+]
